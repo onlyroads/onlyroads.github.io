@@ -1,0 +1,680 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>MySQL部署及常用命令 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="This is linux.">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-08 12:00" pubdate>
+        November 8, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      25
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">This is linux.</h1>
+            
+            <div class="markdown-body">
+              <h2 id="希望我的分享能够对大家有所帮助"><a href="#希望我的分享能够对大家有所帮助" class="headerlink" title="希望我的分享能够对大家有所帮助"></a><strong>希望我的分享能够对大家有所帮助</strong></h2><h3 id="MySQL部署"><a href="#MySQL部署" class="headerlink" title="MySQL部署"></a>MySQL部署</h3><h4 id="1、解压tar包，更名"><a href="#1、解压tar包，更名" class="headerlink" title="1、解压tar包，更名"></a>1、解压tar包，更名</h4><pre><code class="hljs autoit">[root<span class="hljs-symbol">@hadoop100</span> ~]<span class="hljs-meta"># cd /usr/local/</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># tar zxvf mysql-5.7.11-linux-glibc2.5-x86_64.tar.gz</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># mv mysql-5.7.11-linux-glibc2.5-x86_64 mysql</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># mkdir mysql/arch mysql/data mysql/tmp</span></code></pre>
+<h4 id="2、创建my-cnf文件"><a href="#2、创建my-cnf文件" class="headerlink" title="2、创建my.cnf文件"></a>2、创建my.cnf文件</h4><pre><code class="hljs nix">[root@hadoop100 local]<span class="hljs-comment"># vi /etc/my.cnf</span>
+dG清空文件所有内容
+添加以下内容：
+[client]
+<span class="hljs-attr">port</span>            = <span class="hljs-number">3306</span>
+<span class="hljs-attr">socket</span>          = /usr/local/mysql/data/mysql.sock
+<span class="hljs-attr">default-character-set=utf8mb4</span>
+
+[mysqld]
+<span class="hljs-attr">port</span>            = <span class="hljs-number">3306</span>
+<span class="hljs-attr">socket</span>          = /usr/local/mysql/data/mysql.sock
+
+skip-slave-start
+
+skip-external-locking
+<span class="hljs-attr">key_buffer_size</span> = <span class="hljs-number">256</span>M
+<span class="hljs-attr">sort_buffer_size</span> = <span class="hljs-number">2</span>M
+<span class="hljs-attr">read_buffer_size</span> = <span class="hljs-number">2</span>M
+<span class="hljs-attr">read_rnd_buffer_size</span> = <span class="hljs-number">4</span>M
+<span class="hljs-attr">query_cache_size=</span> <span class="hljs-number">32</span>M
+<span class="hljs-attr">max_allowed_packet</span> = <span class="hljs-number">16</span>M
+<span class="hljs-attr">myisam_sort_buffer_size=128M</span>
+<span class="hljs-attr">tmp_table_size=32M</span>
+
+<span class="hljs-attr">table_open_cache</span> = <span class="hljs-number">512</span>
+<span class="hljs-attr">thread_cache_size</span> = <span class="hljs-number">8</span>
+<span class="hljs-attr">wait_timeout</span> = <span class="hljs-number">86400</span>
+<span class="hljs-attr">interactive_timeout</span> = <span class="hljs-number">86400</span>
+<span class="hljs-attr">max_connections</span> = <span class="hljs-number">600</span>
+
+<span class="hljs-comment"># Try number of CPU&#x27;s*2 for thread_concurrency</span>
+<span class="hljs-comment">#thread_concurrency = 32 </span>
+
+<span class="hljs-comment">#isolation level and default engine </span>
+<span class="hljs-attr">default-storage-engine</span> = INNODB
+<span class="hljs-attr">transaction-isolation</span> = READ-COMMITTED
+
+<span class="hljs-attr">server-id</span>  = <span class="hljs-number">1739</span>
+<span class="hljs-attr">basedir</span>     = /usr/local/mysql
+<span class="hljs-attr">datadir</span>     = /usr/local/mysql/data
+<span class="hljs-attr">pid-file</span>     = /usr/local/mysql/data/hostname.pid
+
+<span class="hljs-comment">#open performance schema</span>
+log-warnings
+sysdate-is-now
+
+<span class="hljs-attr">binlog_format</span> = ROW
+<span class="hljs-attr">log_bin_trust_function_creators=1</span>
+<span class="hljs-attr">log-error</span>  = /usr/local/mysql/data/hostname.err
+<span class="hljs-attr">log-bin</span> = /usr/local/mysql/arch/mysql-bin
+<span class="hljs-attr">expire_logs_days</span> = <span class="hljs-number">7</span>
+
+<span class="hljs-attr">innodb_write_io_threads=16</span>
+
+<span class="hljs-attr">relay-log</span>  = /usr/local/mysql/relay_log/relay-log
+<span class="hljs-attr">relay-log-index</span> = /usr/local/mysql/relay_log/relay-log.index
+<span class="hljs-attr">relay_log_info_file=</span> /usr/local/mysql/relay_log/relay-log.info
+
+<span class="hljs-attr">log_slave_updates=1</span>
+<span class="hljs-attr">gtid_mode=OFF</span>
+<span class="hljs-attr">enforce_gtid_consistency=OFF</span>
+
+<span class="hljs-comment"># slave</span>
+<span class="hljs-attr">slave-parallel-type=LOGICAL_CLOCK</span>
+<span class="hljs-attr">slave-parallel-workers=4</span>
+<span class="hljs-attr">master_info_repository=TABLE</span>
+<span class="hljs-attr">relay_log_info_repository=TABLE</span>
+<span class="hljs-attr">relay_log_recovery=ON</span>
+
+<span class="hljs-comment">#other logs</span>
+<span class="hljs-comment">#general_log =1</span>
+<span class="hljs-comment">#general_log_file  = /usr/local/mysql/data/general_log.err</span>
+<span class="hljs-comment">#slow_query_log=1</span>
+<span class="hljs-comment">#slow_query_log_file=/usr/local/mysql/data/slow_log.err</span>
+
+<span class="hljs-comment">#for replication slave</span>
+<span class="hljs-attr">sync_binlog</span> = <span class="hljs-number">500</span>
+
+
+<span class="hljs-comment">#for innodb options </span>
+<span class="hljs-attr">innodb_data_home_dir</span> = /usr/local/mysql/data/
+<span class="hljs-attr">innodb_data_file_path</span> = ibdata1:<span class="hljs-number">1</span>G;ibdata2:<span class="hljs-number">1</span>G:autoextend
+
+<span class="hljs-attr">innodb_log_group_home_dir</span> = /usr/local/mysql/arch
+<span class="hljs-attr">innodb_log_files_in_group</span> = <span class="hljs-number">4</span>
+<span class="hljs-attr">innodb_log_file_size</span> = <span class="hljs-number">1</span>G
+<span class="hljs-attr">innodb_log_buffer_size</span> = <span class="hljs-number">200</span>M
+
+<span class="hljs-comment">#根据生产需要，调整pool size </span>
+<span class="hljs-attr">innodb_buffer_pool_size</span> = <span class="hljs-number">2</span>G
+<span class="hljs-comment">#innodb_additional_mem_pool_size = 50M #deprecated in 5.6</span>
+<span class="hljs-attr">tmpdir</span> = /usr/local/mysql/tmp
+
+<span class="hljs-attr">innodb_lock_wait_timeout</span> = <span class="hljs-number">1000</span>
+<span class="hljs-comment">#innodb_thread_concurrency = 0</span>
+<span class="hljs-attr">innodb_flush_log_at_trx_commit</span> = <span class="hljs-number">2</span>
+
+<span class="hljs-attr">innodb_locks_unsafe_for_binlog=1</span>
+
+<span class="hljs-comment">#innodb io features: add for mysql5.5.8</span>
+performance_schema
+<span class="hljs-attr">innodb_read_io_threads=4</span>
+<span class="hljs-attr">innodb-write-io-threads=4</span>
+<span class="hljs-attr">innodb-io-capacity=200</span>
+<span class="hljs-comment">#purge threads change default(0) to 1 for purge</span>
+<span class="hljs-attr">innodb_purge_threads=1</span>
+<span class="hljs-attr">innodb_use_native_aio=on</span>
+
+<span class="hljs-comment">#case-sensitive file names and separate tablespace</span>
+<span class="hljs-attr">innodb_file_per_table</span> = <span class="hljs-number">1</span>
+<span class="hljs-attr">lower_case_table_names=1</span>
+
+[mysqldump]
+quick
+<span class="hljs-attr">max_allowed_packet</span> = <span class="hljs-number">128</span>M
+
+[mysql]
+no-auto-rehash
+<span class="hljs-attr">default-character-set=utf8mb4</span>
+
+[mysqlhotcopy]
+interactive-timeout
+
+[myisamchk]
+<span class="hljs-attr">key_buffer_size</span> = <span class="hljs-number">256</span>M
+<span class="hljs-attr">sort_buffer_size</span> = <span class="hljs-number">256</span>M
+<span class="hljs-attr">read_buffer</span> = <span class="hljs-number">2</span>M
+<span class="hljs-attr">write_buffer</span> = <span class="hljs-number">2</span>M</code></pre>
+<h4 id="3、创建用户组及用户"><a href="#3、创建用户组及用户" class="headerlink" title="3、创建用户组及用户"></a>3、创建用户组及用户</h4><pre><code class="hljs autoit">[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># groupadd -g 101 dba</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># useradd -u 514 -g dba -G root -d /usr/local/mysql/ mysqladmin</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># id mysqladmin</span>
+uid=<span class="hljs-number">514</span>(mysqladmin) gid=<span class="hljs-number">101</span>(dba) 组=<span class="hljs-number">101</span>(dba),<span class="hljs-number">0</span>(root)
+<span class="hljs-meta"># 一般不需要设置mysqladmin的密码，直接从root或者LDAP用户sudo切换</span></code></pre>
+<h4 id="4-copy-环境变量配置文件至mysqladmin用户的home目录中"><a href="#4-copy-环境变量配置文件至mysqladmin用户的home目录中" class="headerlink" title="4.copy 环境变量配置文件至mysqladmin用户的home目录中"></a>4.copy 环境变量配置文件至mysqladmin用户的home目录中</h4><p>为了以下步骤配置个人环境变量，因为mysqladmin的家目录不在/home，样式会丢失，需要拷贝！！！！</p>
+<pre><code class="hljs gradle">[root@hadoop100 local]# cp <span class="hljs-regexp">/etc/</span>skel<span class="hljs-regexp">/.* /u</span>sr<span class="hljs-regexp">/local/my</span>sql</code></pre>
+<h4 id="5、配置环境变量"><a href="#5、配置环境变量" class="headerlink" title="5、配置环境变量"></a>5、配置环境变量</h4><pre><code class="hljs routeros">[root@hadoop100 local]# vi mysql/.bashrc
+添加以下内容：
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">MYSQL_BASE</span>=/usr/local/mysql
+<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$&#123;MYSQL_BASE&#125;</span>/bin:$PATH
+
+
+unset USERNAME
+
+<span class="hljs-comment">#stty erase ^H</span>
+<span class="hljs-builtin-name">set</span> umask <span class="hljs-keyword">to</span> 022
+umask 022
+<span class="hljs-attribute">PS1</span>=`uname -n`<span class="hljs-string">&quot;:&quot;</span><span class="hljs-string">&#x27;$USER&#x27;</span><span class="hljs-string">&quot;:&quot;</span><span class="hljs-string">&#x27;$PWD&#x27;</span><span class="hljs-string">&quot;:&gt;&quot;</span>; <span class="hljs-builtin-name">export</span> PS1
+
+<span class="hljs-comment">## end</span></code></pre>
+<h4 id="6、赋权限和用户组，切换用户mysqladmin，安装"><a href="#6、赋权限和用户组，切换用户mysqladmin，安装" class="headerlink" title="6、赋权限和用户组，切换用户mysqladmin，安装"></a>6、赋权限和用户组，切换用户mysqladmin，安装</h4><pre><code class="hljs autoit">[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># chown mysqladmin:dba /etc/my.cnf</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># chmod 640 /etc/my.cnf</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># chown -R mysqladmin:dba /usr/local/mysql</span>
+[root<span class="hljs-symbol">@hadoop100</span> <span class="hljs-keyword">local</span>]<span class="hljs-meta"># chmod -R 755 /usr/local/mysql</span></code></pre>
+<h4 id="7、配置服务及开机自启动"><a href="#7、配置服务及开机自启动" class="headerlink" title="7、配置服务及开机自启动"></a>7、配置服务及开机自启动</h4><pre><code class="hljs autoit"><span class="hljs-meta"># 将服务文件拷贝到init.d下，并重命名为mysql</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># cp support-files/mysql.server /etc/rc.d/init.d/mysql</span>
+<span class="hljs-meta"># 赋予可执行权限</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># chmod +x /etc/rc.d/init.d/mysql </span>
+<span class="hljs-meta"># 删除服务</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># chkconfig --del mysql</span>
+<span class="hljs-meta"># 添加服务</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># chkconfig --add mysql</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># chkconfig --level 345 mysql on</span>
+[root<span class="hljs-symbol">@hadoop100</span> mysql]<span class="hljs-meta"># vi /etc/rc.local</span>
+添加以下内容：
+su - mysqladmin -c <span class="hljs-string">&quot;/etc/init.d/mysql start --federated&quot;</span></code></pre>
+<h4 id="8、安装libaio及安装mysql的初始db"><a href="#8、安装libaio及安装mysql的初始db" class="headerlink" title="8、安装libaio及安装mysql的初始db"></a>8、安装libaio及安装mysql的初始db</h4><pre><code class="hljs sql">[root@hadoop100 ~]<span class="hljs-comment"># yum -y install libaio</span>
+<span class="hljs-comment"># 如果遇到以下错误：</span>
+/var/run/yum.pid 已被锁定，PID 为 5357 的另一个程序正在运行。
+Another app is currently holding the yum <span class="hljs-keyword">lock</span>; waiting for it to exit...
+<span class="hljs-comment"># 解决方法：</span>
+[root@hadoop100 ~]<span class="hljs-comment"># rm -f /var/run/yum.pid</span>
+<span class="hljs-comment"># 初始化：</span>
+bin/mysqld \
+<span class="hljs-comment">--defaults-file=/etc/my.cnf \</span>
+<span class="hljs-comment">--user=mysqladmin \</span>
+<span class="hljs-comment">--basedir=/usr/local/mysql/ \</span>
+<span class="hljs-comment">--datadir=/usr/local/mysql/data/ \</span>
+<span class="hljs-comment">--initialize</span>
+<span class="hljs-comment"># 初始化时，可能会报以下错误：</span>
+[ERROR] Fatal error: Can&#x27;t <span class="hljs-keyword">change</span> <span class="hljs-keyword">to</span> run <span class="hljs-keyword">as</span> <span class="hljs-keyword">user</span> <span class="hljs-string">&#x27;mysql&#x27;</span> ;  Please <span class="hljs-keyword">check</span> that the <span class="hljs-keyword">user</span> <span class="hljs-keyword">exists</span>!
+<span class="hljs-comment"># 解决办法：删除目录中的data目录（个人是可以解决的）</span>
+hadoop100:mysqladmin:/usr/<span class="hljs-keyword">local</span>/mysql:&gt;rm -rf <span class="hljs-keyword">data</span>/</code></pre>
+<h4 id="9、查看临时密码"><a href="#9、查看临时密码" class="headerlink" title="9、查看临时密码"></a>9、查看临时密码</h4><pre><code class="hljs less"><span class="hljs-attribute">hadoop100</span>:<span class="hljs-attribute">mysqladmin</span>:/usr/local/mysql/<span class="hljs-attribute">data</span>:&gt;cat hostname.err | grep password
+<span class="hljs-number">2020</span><span class="hljs-attribute">-11-16T05</span>:<span class="hljs-number">36</span>:<span class="hljs-number">10.531262</span>Z <span class="hljs-number">1</span> [Note] A temporary password is generated for root<span class="hljs-variable">@localhost</span>: wrZh5yitrF/_</code></pre>
+<h4 id="10、启动"><a href="#10、启动" class="headerlink" title="10、启动"></a>10、启动</h4><pre><code class="hljs awk">hadoop100:mysqladmin:<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/mysql/</span>data:&gt;<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/mysql/</span>bin<span class="hljs-regexp">/mysqld_safe --defaults-file=/</span>etc/my.cnf &amp;
+<span class="hljs-comment"># 按两次回车</span></code></pre>
+<h4 id="11、登录及初始化"><a href="#11、登录及初始化" class="headerlink" title="11、登录及初始化"></a>11、登录及初始化</h4><pre><code class="hljs routeros">hadoop100:mysqladmin:/usr/local/mysql/data:&gt;mysql -uroot -p<span class="hljs-string">&#x27;你的密码&#x27;</span>
+
+mysql: [<span class="hljs-builtin-name">Warning</span>] Using a password on the command line<span class="hljs-built_in"> interface </span>can be insecure.
+Welcome <span class="hljs-keyword">to</span> the MySQL monitor.  Commands end with ; <span class="hljs-keyword">or</span> \g.
+Your MySQL<span class="hljs-built_in"> connection </span>id is 2
+Server version: 5.7.11-log
+
+Copyright (c) 2000, 2016, Oracle <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation <span class="hljs-keyword">and</span>/<span class="hljs-keyword">or</span> its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type <span class="hljs-string">&#x27;help;&#x27;</span> <span class="hljs-keyword">or</span> <span class="hljs-string">&#x27;\h&#x27;</span> <span class="hljs-keyword">for</span> help.<span class="hljs-built_in"> Type </span><span class="hljs-string">&#x27;\c&#x27;</span> <span class="hljs-keyword">to</span> clear the current input statement.
+
+mysql&gt; 
+
+<span class="hljs-comment"># 修改密码为‘ruozedata’</span>
+mysql&gt; alter<span class="hljs-built_in"> user </span>root@localhost identified by <span class="hljs-string">&#x27;ruozedata&#x27;</span>;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; GRANT ALL PRIVILEGES ON *.* <span class="hljs-keyword">TO</span> <span class="hljs-string">&#x27;root&#x27;</span>@<span class="hljs-string">&#x27;%&#x27;</span> IDENTIFIED BY <span class="hljs-string">&#x27;ruozedata&#x27;</span> ;
+Query OK, 0 rows affected, 1 <span class="hljs-builtin-name">warning</span> (0.00 sec)
+<span class="hljs-comment"># 刷新权限</span>
+mysql&gt; flush privileges;
+Query OK, 0 rows affected (0.00 sec)
+
+<span class="hljs-comment"># 退出</span>
+mysql&gt; exit;
+Bye
+
+<span class="hljs-comment"># 重启</span>
+hadoop100:mysqladmin:/usr/local/mysql/data:&gt;service mysql restart
+hadoop100:mysqladmin:/usr/local/mysql/data:&gt;mysql -uroot -pruozedata</code></pre>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><h4 id="1、创建用户并赋予权限"><a href="#1、创建用户并赋予权限" class="headerlink" title="1、创建用户并赋予权限"></a>1、创建用户并赋予权限</h4><p>创建database：ruozedata<br>create database ruozedata;<br>创建用户‘qi’，qi对于database：buozedata有所有的访问权限，用户密码是‘ruozedata’<br>grant all privileges on ruozedata.* to qi@’%’ identified by ‘ruozedata’;<br>刷新权限<br>flush privileges;<br><strong>【注意】</strong><br>对于mysql的用户操作，比如权限相关的 ，最后一步必须执行刷新权限。<br>%代表了 任意的客户端的IP地址 都被允许使用qi用户来远程访问</p>
+<p>已经赋予%权限，在访问的时候还是有可能抛权限访问错误<br>这时可以尝试：<br>grant all privileges on ruozedata.* to qi@’客户端机器的IP’ identified by ‘ruozedata’;<br>如果这样配置：<br>grant all privileges on ruozedata.* to qi@’16.2.3.%’ identified by ‘ruozedata’;<br>16.2.3这个网段的所有ip都允许有权限去访问<br>16.2.3.1<br>16.2.3.2<br>16.2.3.3<br>….<br>16.2.3.255</p>
+<pre><code class="hljs routeros">mysql&gt; select user,host, authentication_string <span class="hljs-keyword">from</span> user;
++-----------+-----------+-------------------------------------------+
+|<span class="hljs-built_in"> user </span>     | host      | authentication_string                     |
++-----------+-----------+-------------------------------------------+
+| root      | localhost | <span class="hljs-number">*4631F5CA72944B9DF43D706A6575ED330C93E3C8</span> |
+| mysql.sys | localhost | *THISISNOTAVALIDPASSWORDTHATCANBEUSEDHERE |
+| root      | %         | <span class="hljs-number">*4631F5CA72944B9DF43D706A6575ED330C93E3C8</span> |
+| qi        | %         | <span class="hljs-number">*4631F5CA72944B9DF43D706A6575ED330C93E3C8</span> |
++-----------+-----------+-------------------------------------------+
+4 rows <span class="hljs-keyword">in</span> <span class="hljs-builtin-name">set</span> (0.00 sec)</code></pre>
+<h4 id="2、登录"><a href="#2、登录" class="headerlink" title="2、登录"></a>2、登录</h4><pre><code class="hljs awk"><span class="hljs-comment"># 有风险</span>
+hadoop100:mysqladmin:<span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/mysql/</span>data:&gt;mysql -uqi -pruozedata -h192.<span class="hljs-number">168.1</span>.<span class="hljs-number">100</span></code></pre>
+<p><strong>【推荐使用以下方式登录】</strong><br>mysql -uqi -p -h192.168.1.100，先不输入密码，等密码框弹出来后在输入<br>如果用第一种方法登录，可以在使用history查看到密码</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">常用命令</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%83%A8%E7%BD%B2/">部署</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/08/Linux%E4%B8%8B%E9%85%8D%E7%BD%AEjdk%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux下配置jdk环境变量</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/linux%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B92/">
+                        <span class="hidden-mobile">Linux实用命令及注意事项2</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

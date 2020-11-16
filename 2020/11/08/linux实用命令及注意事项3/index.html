@@ -1,0 +1,522 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Linux实用命令及注意事项3 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"copy_btn":true,"image_zoom":{"enable":true},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Fluid</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                About
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="This is linux.">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-08 12:00" pubdate>
+        November 8, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">This is linux.</h1>
+            
+            <div class="markdown-body">
+              <h3 id="欢迎来到onlyroads，希望我的分享能够对大家有所帮助"><a href="#欢迎来到onlyroads，希望我的分享能够对大家有所帮助" class="headerlink" title="欢迎来到onlyroads，希望我的分享能够对大家有所帮助"></a>欢迎来到onlyroads，希望我的分享能够对大家有所帮助</h3><hr>
+<h4 id="磁盘"><a href="#磁盘" class="headerlink" title="磁盘"></a>磁盘</h4><p><strong>查看磁盘：df -h</strong></p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[[root@hadoop100 ~]</span># df -h
+文件系统                 容量  已用  可用 已用% 挂载点
+/dev/mapper/centos-root   <span class="hljs-number">46</span>G  <span class="hljs-number">8.5</span>G   <span class="hljs-number">37</span>G   <span class="hljs-number">19</span>% /
+devtmpfs                 <span class="hljs-number">2.0</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">2.0</span>G    <span class="hljs-number">0</span>% /dev
+tmpfs                    <span class="hljs-number">2.0</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">2.0</span>G    <span class="hljs-number">0</span>% /dev/shm
+tmpfs                    <span class="hljs-number">2.0</span>G   <span class="hljs-number">13</span>M  <span class="hljs-number">2.0</span>G    <span class="hljs-number">1</span>% /run
+tmpfs                    <span class="hljs-number">2.0</span>G     <span class="hljs-number">0</span>  <span class="hljs-number">2.0</span>G    <span class="hljs-number">0</span>% /sys/fs/cgroup
+/dev/sda1               <span class="hljs-number">1014</span>M  <span class="hljs-number">157</span>M  <span class="hljs-number">858</span>M   <span class="hljs-number">16</span>% /boot
+tmpfs                    <span class="hljs-number">394</span>M  <span class="hljs-number">8.0</span>K  <span class="hljs-number">394</span>M    <span class="hljs-number">1</span>% /run/user/<span class="hljs-number">42</span>
+tmpfs                    <span class="hljs-number">394</span>M     <span class="hljs-number">0</span>  <span class="hljs-number">394</span>M    <span class="hljs-number">0</span>% /run/user/<span class="hljs-number">0</span></code></pre>
+<h4 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h4><pre><code class="hljs yaml">[<span class="hljs-string">root@hadoop100</span> <span class="hljs-string">~</span>]<span class="hljs-comment"># free -m</span>
+              <span class="hljs-string">total</span>        <span class="hljs-string">used</span>        <span class="hljs-string">free</span>      <span class="hljs-string">shared</span>  <span class="hljs-string">buff/cache</span>   <span class="hljs-string">available</span>
+<span class="hljs-attr">Mem:</span>           <span class="hljs-number">3934         </span><span class="hljs-number">376</span>        <span class="hljs-number">3171          </span><span class="hljs-number">12</span>         <span class="hljs-number">385</span>        <span class="hljs-number">3267</span>
+<span class="hljs-attr">Swap:</span>          <span class="hljs-number">3967           </span><span class="hljs-number">0</span>        <span class="hljs-number">3967</span></code></pre>
+<p>预留内存最好在15%<br>376 / 3943 = 8%<br>swap 因为内存不够，使用部分磁盘空间来充当内存使用，虽然可以解决内存紧缺的问题，但是效率不高；尤其是大数据，swap哪怕设置了大小，也尽量设置惰性使用</p>
+<h4 id="机器负载-top"><a href="#机器负载-top" class="headerlink" title="机器负载 top"></a>机器负载 top</h4><p>负载：load average: 0.00, 0.01, 0.04<br>                        1m   5m  15m<br>经验值：10  生产上尽量控制在10，否则服务器就认为很卡<br>a. 计算程序 hive sql、spark、flink 密集计算，要进行调优<br>b. 服务器被挖矿了（查看CPU是否占比很高）<br>                                                                    CPU%<br>      1 root      20   0  194080   7140   4180 S   0.0  0.2   0:02.81 systemd<br>      yarn 软件、redis 软件，默认端口号会被扫描 进行注入 挖矿<br>c. 硬件问题，内存条损坏，万能重启，检测是否是硬件问题</p>
+<h4 id="安装卸载"><a href="#安装卸载" class="headerlink" title="安装卸载"></a>安装卸载</h4><p>yum install -y httpd<br>yum remove<br>公司内网 yum源<br>离线rpm包安装<br>yum install ./httpd.rpm</p>
+<p>rpm -qa | grep httpd<br>rpm -e：清除 (卸载) 软件包<br>rpm –nodeps：不验证包依赖</p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 ~]</span># rpm -aq | grep httpd
+httpd-tools<span class="hljs-number">-2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos.x86_64
+httpd<span class="hljs-number">-2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos.x86_64
+<span class="hljs-string">[root@hadoop100 ~]</span># rpm -e httpd-tools<span class="hljs-number">-2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos.x86_64
+错误：依赖检测失败：
+	httpd-tools = <span class="hljs-number">2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos 被 (已安裝) httpd<span class="hljs-number">-2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos.x86_64 需要
+<span class="hljs-string">[root@hadoop100 ~]</span># rpm -e --nodeps httpd-tools<span class="hljs-number">-2.4</span><span class="hljs-number">.6</span><span class="hljs-number">-95.</span>el7.centos.x86_64</code></pre>
+
+<p>wget命令</p>
+<h4 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h4><p>ps -ef | grep 进程名称</p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 ~]</span># ps -ef | grep httpd
+root       <span class="hljs-number">2137</span>      <span class="hljs-number">1</span>  <span class="hljs-number">7</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+apache     <span class="hljs-number">2139</span>   <span class="hljs-number">2137</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+apache     <span class="hljs-number">2141</span>   <span class="hljs-number">2137</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+apache     <span class="hljs-number">2142</span>   <span class="hljs-number">2137</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+apache     <span class="hljs-number">2143</span>   <span class="hljs-number">2137</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+apache     <span class="hljs-number">2144</span>   <span class="hljs-number">2137</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> ?        <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> /usr/sbin/httpd -DFOREGROUND
+root       <span class="hljs-number">2146</span>   <span class="hljs-number">2034</span>  <span class="hljs-number">0</span> <span class="hljs-number">22</span>:<span class="hljs-number">06</span> pts/<span class="hljs-number">0</span>    <span class="hljs-number">00</span>:<span class="hljs-number">00</span>:<span class="hljs-number">00</span> grep --color=<span class="hljs-built_in">auto</span> httpd</code></pre>
+
+<p>杀死进程<br>ps -ef | grep 名称<br>有可能匹配多个，仔细确认进程是否是自己想要杀的进程。<br>kill -9 pid 【高危命令】其他高危命令有：rm -rf，echo “” &gt; file<br>kill -9 111 112 113 三个进程一杀，会造成生成上的误杀事故<br>全局杀<br>kill -9 $(pgrep -f 匹配字符)</p>
+<h4 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h4><p>netstat -nlp | grep pid/名称</p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 ~]</span># netstat -nlp|grep httpd
+tcp6       <span class="hljs-number">0</span>      <span class="hljs-number">0</span> :::<span class="hljs-number">80</span>                   :::*                    LISTEN      <span class="hljs-number">2261</span>/httpd</code></pre>
+<p>:::80、0.0.0.0: 80、192.168.1.100:80<br>80端口号可以对外，window或者其他服务器可以ip + 80进行访问<br>localhost、127.0.0.1代表本机<br>80端口仅本机额其他服务可以访问，window或者其他服务器无法访问</p>
+<pre><code class="hljs awk">可以在<span class="hljs-regexp">/etc/</span>httpd<span class="hljs-regexp">/conf/</span>httpd.conf文件中修改
+[root@hadoop100 conf]<span class="hljs-comment"># pwd</span>
+<span class="hljs-regexp">/etc/</span>httpd/conf
+[root@hadoop100 conf]<span class="hljs-comment"># vim httpd.conf</span>
+<span class="hljs-comment">#Listen 12.34.56.78:80</span>
+Listen <span class="hljs-number">80</span></code></pre>
+<p>总结：<br>a. 有进程PID不一定就有端口号<br>b. 服务的通信交流，其实就是要 ip + 端口号</p>
+<pre><code class="hljs routeros">[root@hadoop100 ~]# telnet 192.169.1.100 221
+Trying 192.169.1.100<span class="hljs-built_in">..</span>.
+telnet: connect <span class="hljs-keyword">to</span><span class="hljs-built_in"> address </span>192.169.1.100:<span class="hljs-built_in"> Connection </span>refused</code></pre>
+<p>Connection refused 【错误三】 command not found【错误一】 permission denied【错误二】<br>linux机器去访问 服务器的服务<br>    先 ping ip<br>    再 telnet ip port</p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 ~]</span># telnet hadoop100 <span class="hljs-number">22</span>
+Trying <span class="hljs-number">192.168</span><span class="hljs-number">.1</span><span class="hljs-number">.100</span>...
+Connected to hadoop100.
+Escape character <span class="hljs-keyword">is</span> <span class="hljs-string">&#x27;^]&#x27;</span>.
+SSH<span class="hljs-number">-2.0</span>-OpenSSH_7<span class="hljs-number">.4</span></code></pre>
+<p>windows电脑去访问 服务器的服务<br>    先 ping ip<br>    再 telnet ip port<br><strong>注意</strong><br>今后如果ping ip可以通，但是telnet不通，但是ip和端口号都开了<br>很有可能是端口号对应的是localhost/127.0.0.1，外网访问不了</p>
+<h4 id="压缩、解压"><a href="#压缩、解压" class="headerlink" title="压缩、解压"></a>压缩、解压</h4><p><strong>zip</strong><br>压缩</p>
+<pre><code class="hljs yaml">[<span class="hljs-string">root@hadoop100</span> <span class="hljs-string">practive</span>]<span class="hljs-comment"># zip -r ruozedata.zip ruozedata/*</span>
+  <span class="hljs-attr">adding:</span> <span class="hljs-string">ruozedata/1.txt</span> <span class="hljs-string">(stored</span> <span class="hljs-number">0</span><span class="hljs-string">%)</span>
+[<span class="hljs-string">root@hadoop100</span> <span class="hljs-string">practive</span>]<span class="hljs-comment"># ll</span>
+<span class="hljs-string">drwxr-xr-x.</span> <span class="hljs-number">2</span> <span class="hljs-string">root</span> <span class="hljs-string">root</span>  <span class="hljs-number">19</span> <span class="hljs-number">11</span><span class="hljs-string">月</span> <span class="hljs-number">13</span> <span class="hljs-number">22</span><span class="hljs-string">:48</span> <span class="hljs-string">ruozedata</span>
+<span class="hljs-string">-rw-r--r--.</span> <span class="hljs-number">1</span> <span class="hljs-string">root</span> <span class="hljs-string">root</span> <span class="hljs-number">198</span> <span class="hljs-number">11</span><span class="hljs-string">月</span> <span class="hljs-number">13</span> <span class="hljs-number">22</span><span class="hljs-string">:49</span> <span class="hljs-string">ruozedata.zip</span></code></pre>
+<p>解压</p>
+<pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 practive]</span># rm -rf ruozedata
+<span class="hljs-string">[root@hadoop100 practive]</span># unzip ruozedata.zip 
+Archive:  ruozedata.zip
+ extracting: ruozedata/<span class="hljs-number">1.</span>txt         
+<span class="hljs-string">[root@hadoop100 practive]</span># ll
+
+drwxr-xr-x. <span class="hljs-number">2</span> root root  <span class="hljs-number">19</span> <span class="hljs-number">11</span>月 <span class="hljs-number">13</span> <span class="hljs-number">22</span>:<span class="hljs-number">50</span> ruozedata
+-rw-r--r--. <span class="hljs-number">1</span> root root <span class="hljs-number">198</span> <span class="hljs-number">11</span>月 <span class="hljs-number">13</span> <span class="hljs-number">22</span>:<span class="hljs-number">49</span> ruozedata.zip</code></pre>
+<p><strong>tar</strong><br>压缩：tar -zcvf 文件<br>解压：tar -zxvf 文件</p>
+<h4 id="commond-not-fount"><a href="#commond-not-fount" class="headerlink" title="commond not fount"></a>commond not fount</h4><p>原因：<br>    没有安装/没有配置环境变量<br>    配置环境变量：<br>    export JAVA_HOME=/usr/java/jdk1.8<br>    export PATH=$JAVA_HOME/bin:$PATH  推荐/bin目录应该配置在PATH前面<br>    这样当系统查找命令时，会先从配置的环境变量中查找，一旦找到PATH后面的内容就不再进行查找了</p>
+<h4 id="定时"><a href="#定时" class="headerlink" title="定时"></a>定时</h4><p>crontab -l 查看<br>crontab -e 编辑 就是编辑一个定时器文件内容</p>
+<p>面试题：<br>每隔10s 打印一次（contab无法完成，最小是分）<br>*/6 * * * *  每隔6min打印，是错误的</p>
+<p>分<br>小时<br>日<br>月<br>周<br>标识 每</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%9B%B8%E5%BA%94%E7%9A%84%E5%9D%91/">相应的坑</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/08/linux%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B92/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux实用命令及注意事项2</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/08/linux%E5%AE%9E%E7%94%A8%E5%91%BD%E4%BB%A4%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">
+                        <span class="hidden-mobile">Linux实用命令及注意事项</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":200})
+    NProgress.start()
+    document.addEventListener('DOMContentLoaded', function() {
+      window.NProgress && window.NProgress.inc();
+    })
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
