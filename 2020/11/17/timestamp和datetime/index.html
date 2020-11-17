@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Linux下配置jdk环境变量 - Hexo</title>
+  <title>timestamp和datetime - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="This is linux.">
+            <span class="h2" id="subtitle" title="timestamp和datetime">
               
             </span>
 
@@ -172,8 +172,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-11-08 12:00" pubdate>
-        November 8, 2020 pm
+      <time datetime="2020-11-17 12:00" pubdate>
+        November 17, 2020 pm
       </time>
     </span>
   
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      305 字
+      460 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        分钟
     </span>
   
@@ -224,30 +224,67 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">This is linux.</h1>
+            <h1 style="display: none">timestamp和datetime</h1>
             
             <div class="markdown-body">
-              <h2 id="希望我的分享能够对大家有所帮助"><a href="#希望我的分享能够对大家有所帮助" class="headerlink" title="希望我的分享能够对大家有所帮助"></a><strong>希望我的分享能够对大家有所帮助</strong></h2><h4 id="1、创建目录并解压tar包"><a href="#1、创建目录并解压tar包" class="headerlink" title="1、创建目录并解压tar包"></a>1、创建目录并解压tar包</h4><pre><code class="hljs autoit">[root<span class="hljs-symbol">@hadoop100</span> ~]<span class="hljs-meta"># mkdir -p /usr/java</span>
-[root<span class="hljs-symbol">@hadoop100</span> ~]<span class="hljs-meta"># tar -zxvf jdk-8u181-linux-x64.tar.gz -C /usr/java/</span></code></pre>
-<h4 id="2、查看jdk"><a href="#2、查看jdk" class="headerlink" title="2、查看jdk"></a>2、查看jdk</h4><pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 ~]</span># cd /usr/java/
-<span class="hljs-string">[root@hadoop100 java]</span># ll
-总用量 <span class="hljs-number">0</span>
-drwxr-xr-x. <span class="hljs-number">7</span> <span class="hljs-number">10</span> <span class="hljs-number">143</span> <span class="hljs-number">245</span> <span class="hljs-number">7</span>月   <span class="hljs-number">7</span> <span class="hljs-number">2018</span> jdk1<span class="hljs-number">.8</span><span class="hljs-number">.0</span>_181</code></pre>
-<h4 id="3、更改文件的所有者、所属组"><a href="#3、更改文件的所有者、所属组" class="headerlink" title="3、更改文件的所有者、所属组"></a>3、更改文件的所有者、所属组</h4><pre><code class="hljs angelscript"><span class="hljs-string">[root@hadoop100 java]</span># chown -R root:root jdk1<span class="hljs-number">.8</span><span class="hljs-number">.0</span>_181/
-<span class="hljs-string">[root@hadoop100 java]</span># ll
-drwxr-xr-x. <span class="hljs-number">7</span> root root <span class="hljs-number">245</span> <span class="hljs-number">7</span>月   <span class="hljs-number">7</span> <span class="hljs-number">2018</span> jdk1<span class="hljs-number">.8</span><span class="hljs-number">.0</span>_181</code></pre>
-<p><strong>【注意】</strong><br>解压完jdk后，一定要查看一下jdk文件的所有者以及所属组，如果异常要更改！！！<br>例：drwxr-xr-x. 7 10 143 245 7月   7 2018 jdk1.8.0_181<br>这种情况，要更改文件的所有者所属组为root或者其他：<br>drwxr-xr-x. 7 root root 245 7月   7 2018 jdk1.8.0_181</p>
-<h4 id="4、配置环境变量"><a href="#4、配置环境变量" class="headerlink" title="4、配置环境变量"></a>4、配置环境变量</h4><pre><code class="hljs routeros">[root@hadoop100 java]# vi /etc/profile
-<span class="hljs-comment"># 在尾行加入以下内容：</span>
-<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">JAVA_HOME</span>=/usr/java/jdk1.8.0_181
-<span class="hljs-builtin-name">export</span> <span class="hljs-attribute">PATH</span>=<span class="hljs-variable">$JAVA_HOME</span>/bin:$PATH</code></pre>
-<h4 id="5、生效并查看环境变量"><a href="#5、生效并查看环境变量" class="headerlink" title="5、生效并查看环境变量"></a>5、生效并查看环境变量</h4><pre><code class="hljs routeros">[root@hadoop100 java]# source /etc/profile
-[root@hadoop100 java]# echo <span class="hljs-variable">$PATH</span>
-/usr/java/jdk1.8.0_181/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
-[root@hadoop100 java]# java -version
-java version <span class="hljs-string">&quot;1.8.0_181&quot;</span>
-Java(TM) SE Runtime Environment (build 1.8.0_181-b13)
-Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 25.181-b13, mixed mode)</code></pre>
+              <h2 id="希望我的分享能够对大家有所帮助"><a href="#希望我的分享能够对大家有所帮助" class="headerlink" title="希望我的分享能够对大家有所帮助"></a><strong>希望我的分享能够对大家有所帮助</strong></h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><h4 id="两者都可以用来表示YYYY-MM-DD-HH-MM-SS类型的日期"><a href="#两者都可以用来表示YYYY-MM-DD-HH-MM-SS类型的日期" class="headerlink" title="两者都可以用来表示YYYY-MM-DD HH:MM:SS类型的日期"></a>两者都可以用来表示YYYY-MM-DD HH:MM:SS类型的日期</h4><h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><h4 id="两者的存储方式不一样"><a href="#两者的存储方式不一样" class="headerlink" title="两者的存储方式不一样"></a>两者的存储方式不一样</h4><p>timestamp是把客户端插入的时间从当前时区转化为UTC（世界标准时间）进行存储，查询时，将其又转化为客户端当前时区进行返回。<br>而对于datetime，不做任何改变，基本上是原样输入和输出。<br>验证如下：</p>
+<pre><code class="hljs asciidoc">create table ruozedata.test1(id int, testtime timestamp);
+create table ruozedata.test2(id int, testtime datetime);
+insert into test1 values(1,<span class="hljs-emphasis">&#x27;20201117000000&#x27;</span>);
+insert into test2 values(1,<span class="hljs-emphasis">&#x27;20201117000000&#x27;</span>);
+
+mysql&gt; select * from test1;
+<span class="hljs-code">+------+</span>---------------------+
+| id   | testtime            |
+<span class="hljs-code">+------+</span>---------------------+
+|    1 | 2020-11-17 00:00:00 |
+<span class="hljs-code">+------+</span>---------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select * from test2;
+<span class="hljs-code">+------+</span>---------------------+
+| id   | testtime            |
+<span class="hljs-code">+------+</span>---------------------+
+|    1 | 2020-11-17 00:00:00 |
+<span class="hljs-code">+------+</span>---------------------+
+1 row in set (0.00 sec)</code></pre>
+<p>可以看出二者的结果是一样的<br>现在修改当前会话的时区</p>
+<pre><code class="hljs gherkin">mysql&gt; set time_zone=&#x27;+0:00&#x27;;
+mysql&gt; show variables like &#x27;%time_zone%&#x27;;
++------------------+--------+
+|<span class="hljs-string"> Variable_name    </span>|<span class="hljs-string"> Value  </span>|
++------------------+--------+
+|<span class="hljs-string"> system_time_zone </span>|<span class="hljs-string"> CST    </span>|
+|<span class="hljs-string"> time_zone        </span>|<span class="hljs-string"> +00:00 </span>|
++------------------+--------+</code></pre>
+<p>修改后再次查询</p>
+<pre><code class="hljs asciidoc">mysql&gt; select * from test1;
+<span class="hljs-code">+------+</span>---------------------+
+| id   | testtime            |
+<span class="hljs-code">+------+</span>---------------------+
+|    1 | 2020-11-16 16:00:00 |
+<span class="hljs-code">+------+</span>---------------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select * from test2;
+<span class="hljs-code">+------+</span>---------------------+
+| id   | testtime            |
+<span class="hljs-code">+------+</span>---------------------+
+|    1 | 2020-11-17 00:00:00 |
+<span class="hljs-code">+------+</span>---------------------+
+1 row in set (0.00 sec)</code></pre>
+<p>可以发现timestamp比datetime慢了8小时</p>
+<h4 id="二者表示时间范围不同"><a href="#二者表示时间范围不同" class="headerlink" title="二者表示时间范围不同"></a>二者表示时间范围不同</h4><p>timestamp所能存储的时间范围为：’1970-01-01 00:00:01.000000’ 到 ‘2038-01-19 03:14:07.999999’。datetime所能存储的时间范围为：’1000-01-01 00:00:00.000000’ 到 ‘9999-12-31 23:59:59.999999’。<br>验证如下：</p>
+<pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test1 <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;15201117000000&#x27;</span>);
+ERROR <span class="hljs-number">1292</span> (<span class="hljs-number">22007</span>): Incorrect datetime <span class="hljs-keyword">value</span>: <span class="hljs-string">&#x27;15201117000000&#x27;</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">column</span> <span class="hljs-string">&#x27;testtime&#x27;</span> at <span class="hljs-keyword">row</span> <span class="hljs-number">1</span>
+mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test2 <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;15201117000000&#x27;</span>);
+Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.04</span> sec)
+
+mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test1 <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;20391117000000&#x27;</span>);
+ERROR <span class="hljs-number">1292</span> (<span class="hljs-number">22007</span>): Incorrect datetime <span class="hljs-keyword">value</span>: <span class="hljs-string">&#x27;20391117000000&#x27;</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">column</span> <span class="hljs-string">&#x27;testtime&#x27;</span> at <span class="hljs-keyword">row</span> <span class="hljs-number">1</span>
+mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test2 <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;20391117000000&#x27;</span>);
+Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.00</span> sec)
+</code></pre>
             </div>
             <hr>
             <div>
@@ -257,9 +294,7 @@ Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 25.1
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/jdk/">jdk</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%85%8D%E7%BD%AE/">配置</a>
+                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
                     
                   </div>
                 
@@ -272,18 +307,12 @@ Java HotSpot(TM) 64-Bit<span class="hljs-built_in"> Server </span>VM (build 25.1
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/15/SQL%E8%AF%AD%E6%B3%95/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">SQL语法</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/08/MySQL%E9%83%A8%E7%BD%B2%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
-                        <span class="hidden-mobile">MySQL部署及常用命令</span>
+                      <a href="/2020/11/15/SQL%E8%AF%AD%E6%B3%95/">
+                        <span class="hidden-mobile">SQL语法</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
