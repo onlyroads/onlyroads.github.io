@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>timestamp和datetime - Hexo</title>
+  <title>MySQL分组求TopN - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="timestamp和datetime">
+            <span class="h2" id="subtitle" title="MySQL分组求TopN">
               
             </span>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      460 字
+      554 字
     </span>
   
 
@@ -224,67 +224,50 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">timestamp和datetime</h1>
+            <h1 style="display: none">MySQL分组求TopN</h1>
             
             <div class="markdown-body">
-              <h2 id="希望我的分享能够对大家有所帮助"><a href="#希望我的分享能够对大家有所帮助" class="headerlink" title="希望我的分享能够对大家有所帮助"></a><strong>希望我的分享能够对大家有所帮助</strong></h2><h3 id="相同点"><a href="#相同点" class="headerlink" title="相同点"></a>相同点</h3><h4 id="两者都可以用来表示YYYY-MM-DD-HH-MM-SS类型的日期"><a href="#两者都可以用来表示YYYY-MM-DD-HH-MM-SS类型的日期" class="headerlink" title="两者都可以用来表示YYYY-MM-DD HH:MM:SS类型的日期"></a>两者都可以用来表示YYYY-MM-DD HH:MM:SS类型的日期</h4><h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a>不同点</h3><h4 id="两者的存储方式不一样"><a href="#两者的存储方式不一样" class="headerlink" title="两者的存储方式不一样"></a>两者的存储方式不一样</h4><p>timestamp是把客户端插入的时间从当前时区转化为UTC（世界标准时间）进行存储，查询时，将其又转化为客户端当前时区进行返回。<br>而对于datetime，不做任何改变，基本上是原样输入和输出。<br>验证如下：</p>
-<pre><code class="hljs asciidoc">create table ruozedata.test1(id int, testtime timestamp);
-create table ruozedata.test2(id int, testtime datetime);
-insert into test1 values(1,<span class="hljs-emphasis">&#x27;20201117000000&#x27;</span>);
-insert into test2 values(1,<span class="hljs-emphasis">&#x27;20201117000000&#x27;</span>);
+              <hr>
+<p>建表，插入数据，查看数据</p>
+<pre><code class="hljs sql"><span class="hljs-keyword">create</span> <span class="hljs-keyword">table</span> test1(
+<span class="hljs-keyword">sid</span> <span class="hljs-built_in">varchar</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">comment</span> <span class="hljs-string">&quot;学生ID&quot;</span>,
+cid <span class="hljs-built_in">varchar</span>(<span class="hljs-number">10</span>) <span class="hljs-keyword">comment</span> <span class="hljs-string">&quot;课程ID&quot;</span>,
+score <span class="hljs-built_in">decimal</span>(<span class="hljs-number">18</span>,<span class="hljs-number">1</span>) <span class="hljs-keyword">comment</span> <span class="hljs-string">&quot;课程成绩&quot;</span>);
+);
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test1 <span class="hljs-keyword">values</span>(<span class="hljs-string">&#x27;01&#x27;</span> , <span class="hljs-string">&#x27;01&#x27;</span> , <span class="hljs-number">80</span>),
+(<span class="hljs-string">&#x27;02&#x27;</span> , <span class="hljs-string">&#x27;01&#x27;</span> , <span class="hljs-number">81</span>),
+(<span class="hljs-string">&#x27;03&#x27;</span> , <span class="hljs-string">&#x27;01&#x27;</span> , <span class="hljs-number">82</span>),
+(<span class="hljs-string">&#x27;01&#x27;</span> , <span class="hljs-string">&#x27;02&#x27;</span> , <span class="hljs-number">99</span>),
+(<span class="hljs-string">&#x27;02&#x27;</span> , <span class="hljs-string">&#x27;02&#x27;</span> , <span class="hljs-number">92</span>),
+(<span class="hljs-string">&#x27;03&#x27;</span> , <span class="hljs-string">&#x27;02&#x27;</span> , <span class="hljs-number">90</span>);
 
-mysql&gt; select * from test1;
-<span class="hljs-code">+------+</span>---------------------+
-| id   | testtime            |
-<span class="hljs-code">+------+</span>---------------------+
-|    1 | 2020-11-17 00:00:00 |
-<span class="hljs-code">+------+</span>---------------------+
-1 row in set (0.00 sec)
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> test1;</code></pre>
+<p>.<img src="./images/1606028971441.png" srcset="/img/loading.gif" alt="enter description here"></p>
+<p><strong>求每门课程中成绩最好的人 Top1</strong></p>
+<pre><code class="hljs routeros">select 
+test1.*
+<span class="hljs-keyword">from</span> test1 inner join
+(select cid,max(score) max_score <span class="hljs-keyword">from</span> test1
+group by cid) t1
+on t1.cid = test1.cid <span class="hljs-keyword">and</span> t1.max_score = test1.score</code></pre>
+<p>.<img src="./images/1606029043413.png" srcset="/img/loading.gif" alt="enter description here"><br>求Top1的原理很简单，先从原表中找到各个课程的最大值，然后在将查询结果与原表做一个内连接就可以定位到每个课程的最大值的信息了<br><strong>求每门课程中成绩最好的前两名 Top2</strong></p>
+<pre><code class="hljs mipsasm">select sid,cid,<span class="hljs-keyword">score</span>
+<span class="hljs-keyword">from </span>
+(select <span class="hljs-built_in">t1</span>.* from test1 <span class="hljs-built_in">t1</span>
+left <span class="hljs-keyword">join </span>test1 <span class="hljs-built_in">t2</span>
+on <span class="hljs-built_in">t1</span>.cid = <span class="hljs-built_in">t2</span>.cid <span class="hljs-keyword">and </span><span class="hljs-built_in">t1</span>.<span class="hljs-keyword">score </span>&lt; <span class="hljs-built_in">t2</span>.<span class="hljs-keyword">score</span>
+<span class="hljs-keyword">order </span><span class="hljs-keyword">by </span><span class="hljs-built_in">t1</span>.<span class="hljs-keyword">score </span>desc) new
+group <span class="hljs-keyword">by </span>cid,sid,<span class="hljs-keyword">score</span>
+<span class="hljs-keyword">having </span><span class="hljs-built_in">count</span>(cid) &lt; <span class="hljs-number">2</span>
+<span class="hljs-keyword">order </span><span class="hljs-keyword">by </span>cid;</code></pre>
+<p>.<img src="./images/1606030627082.png" srcset="/img/loading.gif" alt="enter description here"><br>原理如下：<br>内层查找的结果如下：</p>
+<pre><code class="hljs mipsasm">select * from test1 <span class="hljs-built_in">t1</span>
+left <span class="hljs-keyword">join </span>test1 <span class="hljs-built_in">t2</span>
+on <span class="hljs-built_in">t1</span>.cid = <span class="hljs-built_in">t2</span>.cid <span class="hljs-keyword">and </span><span class="hljs-built_in">t1</span>.<span class="hljs-keyword">score </span>&lt; <span class="hljs-built_in">t2</span>.<span class="hljs-keyword">score</span>
+<span class="hljs-keyword">order </span><span class="hljs-keyword">by </span><span class="hljs-built_in">t1</span>.<span class="hljs-keyword">score </span>desc</code></pre>
+<p>.<img src="./images/1606030944304.png" srcset="/img/loading.gif" alt="enter description here"><br>该结果表示的对每门课程的每个学生查找该门课程中成绩是否有比他低的学生，如果有N个，则该同学的信息会出现N次，如果匹配不到则出现1次（他本身）<br>例如：<br>sid为03，cid为02的学生，他的成绩是90，在cid为02的学生中，比90分高的学生有两个，所以结果会出现两次。<br><img src="./images/1606031294785.png" srcset="/img/loading.gif" alt="enter description here"><br>最后在对内层查询的结果进行子查询，根据sid，cid，score分组，根据出现的次数就可以求出每门课程成绩最高的前2名学生（having count(cid) &lt; 2）<br>还是拿sid为03，cid为02的学生来举例，他的成绩为90，出现了2次，表示在cid为02的课程中有2名学生比他高，也就是说他是cid为02课程中排名第3的学生，因此分组后having count(cid) &lt; 2会将他排除在外。</p>
+<p>到此，分组排序讲解完毕，如果还不理解的话，可以自己实现一下这个过程，在分析分析！</p>
 
-mysql&gt; select * from test2;
-<span class="hljs-code">+------+</span>---------------------+
-| id   | testtime            |
-<span class="hljs-code">+------+</span>---------------------+
-|    1 | 2020-11-17 00:00:00 |
-<span class="hljs-code">+------+</span>---------------------+
-1 row in set (0.00 sec)</code></pre>
-<p>可以看出二者的结果是一样的<br>现在修改当前会话的时区</p>
-<pre><code class="hljs gherkin">mysql&gt; set time_zone=&#x27;+0:00&#x27;;
-mysql&gt; show variables like &#x27;%time_zone%&#x27;;
-+------------------+--------+
-|<span class="hljs-string"> Variable_name    </span>|<span class="hljs-string"> Value  </span>|
-+------------------+--------+
-|<span class="hljs-string"> system_time_zone </span>|<span class="hljs-string"> CST    </span>|
-|<span class="hljs-string"> time_zone        </span>|<span class="hljs-string"> +00:00 </span>|
-+------------------+--------+</code></pre>
-<p>修改后再次查询</p>
-<pre><code class="hljs asciidoc">mysql&gt; select * from test1;
-<span class="hljs-code">+------+</span>---------------------+
-| id   | testtime            |
-<span class="hljs-code">+------+</span>---------------------+
-|    1 | 2020-11-16 16:00:00 |
-<span class="hljs-code">+------+</span>---------------------+
-1 row in set (0.00 sec)
-
-mysql&gt; select * from test2;
-<span class="hljs-code">+------+</span>---------------------+
-| id   | testtime            |
-<span class="hljs-code">+------+</span>---------------------+
-|    1 | 2020-11-17 00:00:00 |
-<span class="hljs-code">+------+</span>---------------------+
-1 row in set (0.00 sec)</code></pre>
-<p>可以发现timestamp比datetime慢了8小时</p>
-<h4 id="二者表示时间范围不同"><a href="#二者表示时间范围不同" class="headerlink" title="二者表示时间范围不同"></a>二者表示时间范围不同</h4><p>timestamp所能存储的时间范围为：’1970-01-01 00:00:01.000000’ 到 ‘2038-01-19 03:14:07.999999’。datetime所能存储的时间范围为：’1000-01-01 00:00:00.000000’ 到 ‘9999-12-31 23:59:59.999999’。<br>验证如下：</p>
-<pre><code class="hljs pgsql">mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test1 <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;15201117000000&#x27;</span>);
-ERROR <span class="hljs-number">1292</span> (<span class="hljs-number">22007</span>): Incorrect datetime <span class="hljs-keyword">value</span>: <span class="hljs-string">&#x27;15201117000000&#x27;</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">column</span> <span class="hljs-string">&#x27;testtime&#x27;</span> at <span class="hljs-keyword">row</span> <span class="hljs-number">1</span>
-mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test2 <span class="hljs-keyword">values</span>(<span class="hljs-number">2</span>,<span class="hljs-string">&#x27;15201117000000&#x27;</span>);
-Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.04</span> sec)
-
-mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test1 <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;20391117000000&#x27;</span>);
-ERROR <span class="hljs-number">1292</span> (<span class="hljs-number">22007</span>): Incorrect datetime <span class="hljs-keyword">value</span>: <span class="hljs-string">&#x27;20391117000000&#x27;</span> <span class="hljs-keyword">for</span> <span class="hljs-keyword">column</span> <span class="hljs-string">&#x27;testtime&#x27;</span> at <span class="hljs-keyword">row</span> <span class="hljs-number">1</span>
-mysql&gt; <span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> test2 <span class="hljs-keyword">values</span>(<span class="hljs-number">1</span>,<span class="hljs-string">&#x27;20391117000000&#x27;</span>);
-Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</span> affected (<span class="hljs-number">0.00</span> sec)
-</code></pre>
             </div>
             <hr>
             <div>
@@ -294,7 +277,7 @@ Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</spa
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/SQL/">SQL</a>
+                      <a class="hover-with-bg" href="/tags/MySQL/">MySQL</a>
                     
                   </div>
                 
@@ -307,9 +290,9 @@ Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</spa
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/11/17/hdfs%E6%9E%B6%E6%9E%84/">
+                      <a href="/2020/11/17/MapReduce/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hdfs架构</span>
+                        <span class="hidden-mobile">MapReduce</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -317,8 +300,8 @@ Query OK, <span class="hljs-number">1</span> <span class="hljs-keyword">row</spa
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/11/15/SQL%E8%AF%AD%E6%B3%95/">
-                        <span class="hidden-mobile">SQL语法</span>
+                      <a href="/2020/11/17/Yarn%E8%B0%83%E4%BC%98/">
+                        <span class="hidden-mobile">Yarn调优</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

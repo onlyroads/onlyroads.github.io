@@ -17,9 +17,25 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Archives - Hexo</title>
+  <title>Yarn调优 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
 
 
 
@@ -47,7 +63,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -141,14 +157,51 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/post.webp') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Archive">
+            <span class="h2" id="subtitle" title="Yarn调优">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-17 12:00" pubdate>
+        November 17, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      606 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      7
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -161,106 +214,120 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">16 posts in total.</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/11/29/Hdfs%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hadoop常用命令</span>
-      <time style="float: right;">11-29</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/Hadoop%E9%A2%9D%E5%A4%96%E7%9A%84%E9%85%8D%E7%BD%AE%E7%BB%86%E8%8A%82%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hadoop额外的配置细节及注意事项</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/MySQL%20between%20and%20%E6%9F%A5%E8%AF%A2%E8%8C%83%E5%9B%B4/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySQL between and 查询范围</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/MySQL%E8%A1%8C%E5%88%97%E8%BD%AC%E8%A1%8C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySQL行转列，列转行</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/MapReduce/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MapReduce</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MySQL分组求TopN</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/Yarn%E8%B0%83%E4%BC%98/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Yarn调优</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hadoop伪分布式部署</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/hdfs%E6%9E%B6%E6%9E%84/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">hdfs架构</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-    
-    <a href="/2020/11/17/timestamp%E5%92%8Cdatetime/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">timestamp和datetime</span>
-      <time style="float: right;">11-17</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Yarn调优</h1>
+            
+            <div class="markdown-body">
+              <hr>
+<h4 id="container容器"><a href="#container容器" class="headerlink" title="container容器"></a>container容器</h4><h5 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h5><ol>
+<li>是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container 表示的。 YARN会为每个任务分配一个Container且该任务只能使用该Container中描述的资源。</li>
+</ol>
+<h5 id="关于yarn调优，其实就是调整-container（生产上如何调优）"><a href="#关于yarn调优，其实就是调整-container（生产上如何调优）" class="headerlink" title="关于yarn调优，其实就是调整 container（生产上如何调优）"></a>关于yarn调优，其实就是调整 container（生产上如何调优）</h5><ol>
+<li>假设某台机器运行内存为128G，物理core个数为 16，首先系统要预留 20% 内存给当前进程服务，防止出现 oom-kill 机制，给未来部署的软件预留空间 128 * 0.2 = 25.6，还剩下大概102G的内存</li>
+<li>DataNode 和 NodeManager节点各分配 2G、4G的内存，现在一共剩下 102-2-4=96G内存，这96G是负责计算的container容器真正的总内存</li>
+<li>container内存分配的相关参数（如果是96G内存）<ul>
+<li>yarn.nodemanager.resource.memory-mb 96G（默认 8G）</li>
+<li>yarn.scheduler.minimum-allocation-mb 1G（默认 1G）极限情况96个容器内存各1G</li>
+<li>yarn.scheduler.maximum-allocation-mb 96G（默认 8G）极限情况1个容器内存96G</li>
+<li>container容器会不断的自动增加内存1G</li>
+</ul>
+</li>
+<li>container 虚拟core<br>这个概念是yarn自己引入的，设计初衷是考虑不同的服务器的cpu性能不一样，每个cpu计算能力不一样。比如某个物理cpu是另外一个物理cpu的2倍，这时通过设置第一个物理cpu的虚拟core来弥补差异。后来演变为大家都是在使用虚拟core，默认值是2<ul>
+<li>yarn.nodemanager.resource.cpu-vcores   32（默认8个）</li>
+<li>yarn.scheduler.minimum-allocation-vcores 1（默认1个）极限情况下是32个</li>
+<li>yarn.scheduler.maximum-allocation-vcores 32 （默认4个）极限情况下是1个</li>
+<li>yarn.nodemanager.pmem-check-enabled   true</li>
+<li>yarn.nodemanager.vmem-check-enabled   true （默认是false）</li>
+<li>yarn.nodemanager.vmem-pmem-ratio    2.1 不要改</li>
+</ul>
+</li>
+<li>生产上如何设置container容器各个参数<br>CDH官方经过大量验证，经验值，container容器最大分配vcore不要超过5，故一般生产上设置 yarn.scheduler.maximum-allocation-vcores 4 <ul>
+<li>yarn.nodemanager.resource.cpu-vcores            32</li>
+<li>yarn.scheduler.minimum-allocation-vcores    1</li>
+<li>yarn.scheduler.maximum-allocation-vcores   4 极限情况下，是只有8个container容器</li>
+<li>yarn.nodemanager.resource.memory-mb     96G</li>
+<li>yarn.scheduler.minimum-allocation-mb    1G</li>
+<li>yarn.scheduler.maximum-allocation-mb  12G 极限情况下，是只有8个container容器</li>
+<li>正常来说生产上yarn.scheduler.maximum-allocation-mb 参数设置8左右</li>
+<li>也就是说：1个container容器12G，4个vcore，1个vcore使用3G</li>
+</ul>
+</li>
+</ol>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/hadoop/">hadoop</a>
+                    
+                      <a class="hover-with-bg" href="/tags/yarn/">yarn</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL分组求TopN</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/17/hadoop%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2/">
+                        <span class="hidden-mobile">Hadoop伪分布式部署</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -343,9 +410,15 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
 
 
 

@@ -17,9 +17,25 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Tags - Hexo</title>
+  <title>MapReduce - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.3/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.1.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+  
 
 
 
@@ -47,7 +63,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -141,14 +157,51 @@
 </nav>
 
     <div class="banner intro-2" id="background" parallax=true
-         style="background: url('/img/background-AL.jpg') no-repeat center center;
+         style="background: url('/img/default.png') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Tag">
+            <span class="h2" id="subtitle" title="MapReduce">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-17 12:00" pubdate>
+        November 17, 2020 pm
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      724 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      8
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -161,24 +214,121 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center tagcloud">
-  <a href="/tags/MySQL/" style="font-size: 20px; color: #8ea5dc">MySQL</a> <a href="/tags/SQL/" style="font-size: 15px; color: #bbe">SQL</a> <a href="/tags/SQL%E8%AF%AD%E6%B3%95/" style="font-size: 15px; color: #bbe">SQL语法</a> <a href="/tags/hadoop/" style="font-size: 30px; color: #337ab7">hadoop</a> <a href="/tags/hdfs/" style="font-size: 25px; color: #6090c9">hdfs</a> <a href="/tags/jdk/" style="font-size: 15px; color: #bbe">jdk</a> <a href="/tags/linux/" style="font-size: 20px; color: #8ea5dc">linux</a> <a href="/tags/mapreduce/" style="font-size: 15px; color: #bbe">mapreduce</a> <a href="/tags/yarn/" style="font-size: 15px; color: #bbe">yarn</a> <a href="/tags/%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" style="font-size: 15px; color: #bbe">常用命令</a> <a href="/tags/%E7%9B%B8%E5%BA%94%E7%9A%84%E5%9D%91/" style="font-size: 20px; color: #8ea5dc">相应的坑</a> <a href="/tags/%E9%83%A8%E7%BD%B2/" style="font-size: 15px; color: #bbe">部署</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 15px; color: #bbe">配置</a>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MapReduce</h1>
+            
+            <div class="markdown-body">
+              <h2 id="希望我的分享能够对大家有所帮助"><a href="#希望我的分享能够对大家有所帮助" class="headerlink" title="希望我的分享能够对大家有所帮助"></a><strong>希望我的分享能够对大家有所帮助</strong></h2><h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>mapreduce是一个分布式计算框架</li>
+<li>map 映射：指的是一组数据按照规则映射为一组<br>eg：string = a b a<br>(a,1)、(b,1)、(a,1)</li>
+<li>reduce 归约：汇总<br>(a,2)、(b,1)</li>
+<li>shuffle 洗牌：数据根据key进行网络传输规整到一起，按规则计算<h4 id="mapreduce-on-yarn-提交流程"><a href="#mapreduce-on-yarn-提交流程" class="headerlink" title="mapreduce on yarn 提交流程"></a>mapreduce on yarn 提交流程</h4><h5 id="container-容器"><a href="#container-容器" class="headerlink" title="container 容器"></a>container 容器</h5></li>
+<li>是一定的内存和cpu的资源组合</li>
+<li>在内存够的情况下，适当增加cpu vcore来提升计算的并行度，提高效率</li>
+<li>预留10% - 15%的空间</li>
+<li>oom-kill机制：会监控那些占用内存过大，尤其是瞬间占用内存很快的进程，然后防止内存耗尽而自动把该进程杀掉</li>
+<li>系统需要的内存+预留的内存，为未来新增服务提供所需内存；为了防止出现oom-kill机制<h5 id="提交流程"><a href="#提交流程" class="headerlink" title="提交流程"></a>提交流程</h5><img src="./images/1606705850062.png" srcset="/img/loading.gif" alt="![enter description here](./images/1606705540653.png)"></li>
+<li>*启动applicationmaster主程序，领取资源**</li>
+</ul>
+<ol>
+<li>Client 向RM提交应用程序，其中包含applicationmaster主程序和启动命令</li>
+<li>applications manager 会为【应用程序分配第一个container容器】，来运行applicationmaster主程序</li>
+<li>applicationmaster主程序就会向applications manager 注册，就可以做yarn的web界面上看到job的运行状态</li>
+<li>applicationmaster主程序采取轮询的方式通过【rpc】协议向resourcescheduler，申请和领取资源(哪台机器 领取多少内存 多少cpu VCORE)</li>
+</ol>
+<p><strong>启动applicationmaster主程序，领取资源</strong></p>
+<ol start="5">
+<li>一旦applicationmaster主程序拿到资源的列表，就和对应的nm进程进行通信，要求启动container来运行task任务。</li>
+<li>nm就为task任务设置好运行的环境（container容器）将任务启动命令写在脚本里，并且通过脚本启动任务task。</li>
+<li>各个container的task 任务(map task、reduce task任务)，通过【rpc】协议向applicationmaster主程序进行汇报进度和状态，以此让applicationmaster主程序随时掌握task的运行状态。当task任务运行失败，也会重启container任务。</li>
+<li>当所有的task任务全部完成，applicationmaster主程序会向applications manager 申请注销和关闭作业，这时在web界面查看任务是  是否完成 ，是成功还是失败。</li>
+</ol>
+<p><strong>注意点</strong></p>
+<ul>
+<li>主程序在 NodeManager 所在节点运行</li>
+<li>主程序要向 ResourceSheduler 申请 container 容器</li>
+<li>一个作业第一个 container 容器运行主程序</li>
+</ul>
+<h4 id="小文件危害"><a href="#小文件危害" class="headerlink" title="小文件危害"></a>小文件危害</h4><p>假设有10个1M的小文件<br>根据默认的split切分规则，会生成10个map task也就对应有10个 container容器，那么必然会造成资源的浪费；<br>如果将10个小文件合并成一个10M的文件，切分后就只有一个map task对应一个container容器，就可以节省很多资源。<br><strong>总结：小文件危害</strong></p>
+<ul>
+<li>在存储上，小文件过多会对NameNode产生很大的压力</li>
+<li>在计算书，小文件过多会造成资源的浪费</li>
+</ul>
 
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/hadoop/">hadoop</a>
+                    
+                      <a class="hover-with-bg" href="/tags/mapreduce/">mapreduce</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/17/MySQL%E8%A1%8C%E5%88%97%E8%BD%AC%E8%A1%8C/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL行转列，列转行</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">
+                        <span class="hidden-mobile">MySQL分组求TopN</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -261,9 +411,15 @@
 
 
 
+  <script  src="https://cdn.staticfile.org/tocbot/4.12.0/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.3.0/anchor.min.js" ></script>
 
 
 
