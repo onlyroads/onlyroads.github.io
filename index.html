@@ -181,6 +181,54 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2020/12/03/Yarn%E8%B0%83%E4%BC%98/">Yarn调优</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/03/Yarn%E8%B0%83%E4%BC%98/">
+          
+          
+            
+          
+          
+container容器介绍
+是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container 表示的。 YARN会为每个任务分配一个Container且该任务只能使用该Container中描述的资源。
+
+关于yarn调优，其实就是调整 container（生产上如何调优）
+假设某台机器运行内存为128G，物
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-03 12:00" pubdate>
+              2020-12-03
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+              <a href="/tags/yarn/">yarn</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/11/29/Hdfs%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Hadoop常用命令</a>
       </h1>
 
@@ -274,6 +322,54 @@ Usage: hadoop [--config confdir] COMMAND
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2020/11/17/MapReduce/">MapReduce</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/17/MapReduce/">
+          
+          
+            
+          
+          希望我的分享能够对大家有所帮助基本概念
+mapreduce是一个分布式计算框架
+map 映射：指的是一组数据按照规则映射为一组eg：string = a b a(a,1)、(b,1)、(a,1)
+reduce 归约：汇总(a,2)、(b,1)
+shuffle 洗牌：数据根据key进行网络传输规整到一起，按规则计算mapreduce on yarn 提交流程container 容器
+是一定的内存和c
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-17 12:00" pubdate>
+              2020-11-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hadoop/">hadoop</a>
+            
+              <a href="/tags/mapreduce/">mapreduce</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2020/11/17/MySQL%20between%20and%20%E6%9F%A5%E8%AF%A2%E8%8C%83%E5%9B%B4/">MySQL between and 查询范围</a>
       </h1>
 
@@ -290,6 +386,54 @@ select age from rz where age between 18 and 20;
 时间范围
 数据类型是datetime类型查询参数带时分秒，between and 范围相当于[a,b]
 select * from time_1 where time_ between &#x27;2019-03
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-11-17 12:00" pubdate>
+              2020-11-17
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/MySQL/">MySQL</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">MySQL分组求TopN</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">
+          
+          
+            
+          
+          
+建表，插入数据，查看数据
+create table test1(
+sid varchar(10) comment &quot;学生ID&quot;,
+cid varchar(10) comment &quot;课程ID&quot;,
+score decimal(18,1) comment &quot;课程成绩&quot;);
+);
+insert into test1 values(&#x27;0
         </a>
       </p>
 
@@ -356,150 +500,6 @@ CREATE TABLE `TEST_TB_GRADE` (
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/MySQL/">MySQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/17/MapReduce/">MapReduce</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/17/MapReduce/">
-          
-          
-            
-          
-          希望我的分享能够对大家有所帮助基本概念
-mapreduce是一个分布式计算框架
-map 映射：指的是一组数据按照规则映射为一组eg：string = a b a(a,1)、(b,1)、(a,1)
-reduce 归约：汇总(a,2)、(b,1)
-shuffle 洗牌：数据根据key进行网络传输规整到一起，按规则计算mapreduce on yarn 提交流程container 容器
-是一定的内存和c
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-17 12:00" pubdate>
-              2020-11-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hadoop/">hadoop</a>
-            
-              <a href="/tags/mapreduce/">mapreduce</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">MySQL分组求TopN</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/17/MySQL%E5%88%86%E7%BB%84%E6%B1%82TopN/">
-          
-          
-            
-          
-          
-建表，插入数据，查看数据
-create table test1(
-sid varchar(10) comment &quot;学生ID&quot;,
-cid varchar(10) comment &quot;课程ID&quot;,
-score decimal(18,1) comment &quot;课程成绩&quot;);
-);
-insert into test1 values(&#x27;0
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-17 12:00" pubdate>
-              2020-11-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/MySQL/">MySQL</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/17/Yarn%E8%B0%83%E4%BC%98/">Yarn调优</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/17/Yarn%E8%B0%83%E4%BC%98/">
-          
-          
-            
-          
-          
-container容器介绍
-是YARN中的资源抽象，它封装了某个节点上的多维度资源，如内存、CPU、磁盘、网络等，当AM向RM申请资源时，RM为AM返回的资源便是用Container 表示的。 YARN会为每个任务分配一个Container且该任务只能使用该Container中描述的资源。
-
-关于yarn调优，其实就是调整 container（生产上如何调优）
-假设某台机器运行内存为128G，物
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-17 12:00" pubdate>
-              2020-11-17
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hadoop/">hadoop</a>
-            
-              <a href="/tags/yarn/">yarn</a>
             
           </div>
         
